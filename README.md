@@ -27,6 +27,8 @@ jiraToken | JIRA_TOKEN | [How To Generate](https://confluence.atlassian.com/clou
 jiraUsername | example@example.com ||
 tempoToken | TEMPO_TOKEN | [How To Generate](https://tempo-io.atlassian.net/wiki/spaces/KB/pages/199065601/How+to+use+Tempo+Cloud+REST+APIs)
 
+## Usage
+
 ```shell script
 $ tempo-summary-email -- help
 Options:
