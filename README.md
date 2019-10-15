@@ -10,10 +10,9 @@ Then git clone this repo.
 
 `cd` into the clone directory
 
+Run the following command to setup package:
 ```shell script
-$ npm install
-$ npm run build
-$ npm link
+$ npm run setup
 ```
 
 ## Configuring

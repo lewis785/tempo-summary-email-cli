@@ -5,6 +5,7 @@
   "scripts": {
     "build": "tsc && chmod -x lib/cli.js",
     "dev": "tsc --watch",
+    "setup": "npm install && npm run build && npm link",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
