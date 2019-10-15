@@ -1,0 +1,6 @@
+{
+  "jiraDomain": "example.atlassian.net",
+  "jiraToken": "JIRA_TOKEN",
+  "jiraUsername": "user@example.com",
+  "tempoToken": "TEMPO_TOKEN"
+}
