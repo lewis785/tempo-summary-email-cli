@@ -1,6 +1,6 @@
 # Tempo Summary Email CLI
 
-A command line interface used to generate a summary email of time recordings in tempo.
+A command line interface used to generate a summary email of time recordings in tempo. It uses [tempo-summary-email](https://github.com/lewis785/tempo-summary-email).
 
 ## Installation
 
