@@ -3,8 +3,10 @@ import moment from "moment"
 import TempoSummaryEmail from "tempo-summary-email"
 import { Config } from "./config";
 import { ArgumentValidator } from "./Validation/argument-validator";
+import fs from "fs";
 
 export class Cli {
+    private static readonly configPath = `${__dirname}/../config.json`;
 
     private static getArgs(): any {
         return yargs
@@ -29,12 +31,8 @@ export class Cli {
                 type: "string",
                 describe: "Summary til end date [YYYY-MM-DD]"
             })
-            .check(Cli.validateArgs)
+            .check(this.validateArgs)
             .argv;
-    }
-
-    private static validateArgs (args: any): boolean {
-        return (new ArgumentValidator(args)).validate()
     }
 
     public execute() {
@@ -73,5 +71,13 @@ export class Cli {
         test.generateEmailForRange(start, end).then((response) => {
             console.log(response);
         });
+    }
+
+    private static validateArgs (args: any) {
+        if (!fs.existsSync(Cli.configPath)) {
+            throw new Error(`Could not find config file in path: "${Cli.configPath}"`);
+        }
+
+        return (new ArgumentValidator(args)).validate()
     }
 }

@@ -60,5 +60,4 @@ export class Config {
         }
         return this.configData.tempoToken;
     }
-
 }
