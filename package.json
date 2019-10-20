@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "description": "A command line interface to generate tempo summary emails`",
   "scripts": {
-    "build": "tsc && chmod -x lib/cli.js",
+    "build": "tsc && chmod -x lib/app.js",
     "dev": "tsc --watch",
     "setup": "npm install && npm run build && npm link",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "tempo-summary-email": "lib/cli.js"
+    "tempo-summary-email": "lib/app.js"
   },
   "author": "",
   "license": "MIT",
