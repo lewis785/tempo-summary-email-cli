@@ -37,7 +37,7 @@ $  tempo-summary-email --help
     --yesterday, -y   Summary for yesterday                              [boolean]
     --date, -d        Summary for specific date [YYYY-MM-DD]              [string]
     --start-date, -s  Summary from start date [YYYY-MM-DD]                [string]
-    --end-date, -e    Summary to end date [YYYY-MM-DD]                   [string]
+    --end-date, -e    Summary to end date [YYYY-MM-DD]                    [string]
 ```
 
 To generate a summary of today's work:
