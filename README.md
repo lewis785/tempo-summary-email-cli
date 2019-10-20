@@ -29,14 +29,15 @@ tempoToken | TEMPO_TOKEN | [How To Generate](https://tempo-io.atlassian.net/wiki
 ## Usage
 
 ```shell script
-$ tempo-summary-email -- help
-Options:
-  --version         Show version number                                [boolean]
-  --help            Show help                                          [boolean]
-  --today, -t       Generate summary for today                         [boolean]
-  --start-date, -s  Start date [YYYY-MM-DD]                             [string]
-  --end-date, -e    End date [YYYY-MM-DD]                               [string]
-  --config, -c      Config filepath [string] [required] [default: "config.json"]
+$  tempo-summary-email --help      
+  Options:
+    --version         Show version number                                [boolean]
+    --help            Show help                                          [boolean]
+    --today, -t       Summary for today                                  [boolean]
+    --yesterday, -y   Summary for yesterday                              [boolean]
+    --date, -d        Summary for specific date [YYYY-MM-DD]              [string]
+    --start-date, -s  Summary from start date [YYYY-MM-DD]                [string]
+    --end-date, -e    Summary to end date [YYYY-MM-DD]                   [string]
 ```
 
 To generate a summary of today's work:
@@ -60,5 +61,5 @@ That way, any changes you make are automatically compiled by the TypeScript comp
 
 To run the build code, simply execute the js file directly:
 ```shell script
-$ node lib/cli.js --help
+$ node lib/app.js --help
 ```

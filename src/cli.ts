@@ -34,7 +34,7 @@ export class Cli {
             .option("end-date", {
                 alias: "e",
                 type: "string",
-                describe: "Summary til end date [YYYY-MM-DD]"
+                describe: "Summary to end date [YYYY-MM-DD]"
             })
             .check(this.validateArgs)
             .argv;
