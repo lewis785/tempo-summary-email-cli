@@ -16,6 +16,11 @@ export class Cli {
                 type: "boolean",
                 describe: "Summary for today"
             })
+            .option("yesterday", {
+                alias: "y",
+                type: "boolean",
+                describe: "Summary for yesterday"
+            })
             .option("date", {
                 alias: "d",
                 type: "string",
@@ -35,14 +40,18 @@ export class Cli {
             .argv;
     }
 
-    public execute() {
-        const argv = Cli.getArgs();
-
+    private static getStartAndEndDate(argv: any) {
         let start = "";
         let end = "";
 
         if (argv.today === true) {
             start = moment(new Date()).format("Y-M-D");
+            end = start
+        } else if (argv.yesterday === true) {
+            start = moment(new Date()).subtract(1, "day").format("Y-M-D");
+            end = start;
+        } else if (typeof argv.date !== "undefined") {
+            start = argv.date;
             end = start;
         } else {
             if (typeof argv["start-date"] === "undefined") {
@@ -58,19 +67,7 @@ export class Cli {
 
             end = argv["end-date"] as string;
         }
-
-        const config = new Config(__dirname + '/../config.json');
-
-        const test = new TempoSummaryEmail({
-            jiraApiKey: config.getJiraToken(),
-            jiraDomain: config.getJiraDomain(),
-            jiraUsername: config.getJiraUsername(),
-            tempoApiKey: config.getTempoToken()
-        });
-
-        test.generateEmailForRange(start, end).then((response) => {
-            console.log(response);
-        });
+        return {"start": start, "end": end};
     }
 
     private static validateArgs (args: any) {
@@ -79,5 +76,22 @@ export class Cli {
         }
 
         return (new ArgumentValidator(args)).validate()
+    }
+
+    public execute() {
+        const argv = Cli.getArgs();
+        const dateArray = Cli.getStartAndEndDate(argv);
+
+        const config = new Config(__dirname + '/../config.json');
+        const test = new TempoSummaryEmail({
+            jiraApiKey: config.getJiraToken(),
+            jiraDomain: config.getJiraDomain(),
+            jiraUsername: config.getJiraUsername(),
+            tempoApiKey: config.getTempoToken()
+        });
+
+        test.generateEmailForRange(dateArray["start"], dateArray["end"]).then((response) => {
+            console.log(response);
+        });
     }
 }

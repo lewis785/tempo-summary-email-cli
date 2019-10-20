@@ -5,24 +5,22 @@ export class ArgumentValidator {
         this.args = args;
     }
 
-    public validate(): boolean {
+    private static validateDate(value: string) {
         const dateFormat = /^\d{4}-\d{2}-\d{2}$/;
 
-        if (typeof this.args["start-date"] !== "undefined") {
-            if (!dateFormat.test(this.args["start-date"])) {
+        if (typeof value !== "undefined") {
+            if (!dateFormat.test(value)) {
                 throw new Error(
-                    `Invalid start date: ${this.args["start-date"]} Must be of format YYYY-MM-DD.`
+                    `Invalid date: ${value} Must be of format YYYY-MM-DD.`
                 )
             }
         }
+    }
 
-        if (typeof this.args["end-date"] !== "undefined") {
-            if (!dateFormat.test(this.args["end-date"])) {
-                throw new Error(
-                    `Invalid end date: ${this.args["end-date"]} Must be of format YYYY-MM-DD.`
-                )
-            }
-        }
+    public validate(): boolean {
+        ArgumentValidator.validateDate(this.args["date"]);
+        ArgumentValidator.validateDate(this.args["start-date"]);
+        ArgumentValidator.validateDate(this.args['end-date']);
 
         return true;
     }
