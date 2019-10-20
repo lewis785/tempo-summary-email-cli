@@ -2,6 +2,7 @@ import yargs from "yargs"
 import moment from "moment"
 import TempoSummaryEmail from "tempo-summary-email"
 import { Config } from "./config";
+import { ArgumentValidator } from "./Validation/argument-validator";
 
 export class Cli {
 
@@ -11,54 +12,29 @@ export class Cli {
             .option("today", {
                 alias: "t",
                 type: "boolean",
-                describe: "Generate summary for today"
+                describe: "Summary for today"
             })
             .option("date", {
                 alias: "d",
                 type: "string",
-                describe: "Specific date [YYYY-MM-DD]"
+                describe: "Summary for specific date [YYYY-MM-DD]"
             })
             .option("start-date", {
                 alias: "s",
                 type: "string",
-                describe: "Start date [YYYY-MM-DD]"
+                describe: "Summary from start date [YYYY-MM-DD]"
             })
             .option("end-date", {
                 alias: "e",
                 type: "string",
-                describe: "End date [YYYY-MM-DD]"
+                describe: "Summary til end date [YYYY-MM-DD]"
             })
-            .option("config", {
-                alias: "c",
-                type: "string",
-                default: "config.json",
-                describe: "Config filepath"
-            })
-            .demandOption(['config'])
             .check(Cli.validateArgs)
             .argv;
     }
 
     private static validateArgs (args: any): boolean {
-        const dateFormat = /^\d{4}-\d{2}-\d{2}$/;
-
-        if (typeof args["start-date"] !== "undefined") {
-            if (!dateFormat.test(args["start-date"])) {
-                throw new Error(
-                    `Invalid start date: ${args["start-date"]} Must be of format YYYY-MM-DD.`
-                )
-            }
-        }
-
-        if (typeof args["end-date"] !== "undefined") {
-            if (!dateFormat.test(args["end-date"])) {
-                throw new Error(
-                    `Invalid end date: ${args["end-date"]} Must be of format YYYY-MM-DD.`
-                )
-            }
-        }
-
-        return true;
+        return (new ArgumentValidator(args)).validate()
     }
 
     public execute() {
@@ -85,7 +61,7 @@ export class Cli {
             end = argv["end-date"] as string;
         }
 
-        const config = new Config(argv.config);
+        const config = new Config(__dirname + '/../config.json');
 
         const test = new TempoSummaryEmail({
             jiraApiKey: config.getJiraToken(),
