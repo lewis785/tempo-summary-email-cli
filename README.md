@@ -1,3 +1,6 @@
+[![Dependency Status](https://david-dm.org/lewis785/tempo-summary-email-cli/status.svg)](https://david-dm.org/lewis785/tempo-summary-email-cli)
+[![Dev Dependency Status](https://david-dm.org/lewis785/tempo-summary-email-cli/dev-status.svg)](https://david-dm.org/lewis785/tempo-summary-email-cli?type=dev)
+
 # Tempo Summary Email CLI
 
 A command line interface used to generate a summary email of time recordings in tempo. It uses [tempo-summary-email](https://github.com/lewis785/tempo-summary-email).
