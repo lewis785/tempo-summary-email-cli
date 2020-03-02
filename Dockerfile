@@ -6,4 +6,3 @@ RUN apk update && \
 COPY . ./app
 WORKDIR /app
 RUN npm run setup
-CMD tail -f /dev/null
