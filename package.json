@@ -14,7 +14,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "tempo-summary-email": "^0.6.0",
     "yargs": "^15.0.0"
   },
